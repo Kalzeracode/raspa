@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Background Colors */
+  --background: 210 14% 6%;
+  --foreground: 0 0% 100%;
+  --card: 210 14% 8%;
+  --card-foreground: 0 0% 100%;
+  --popover: 210 14% 8%;
+  --popover-foreground: 0 0% 100%;
+  
+  /* Primary Colors - Green theme */
+  --primary: 142 86% 28%;
+  --primary-foreground: 0 0% 100%;
+  --primary-glow: 142 86% 35%;
+  
+  /* Secondary Colors */
+  --secondary: 210 14% 12%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 210 14% 10%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 142 86% 28%;
+  --accent-foreground: 0 0% 100%;
+  
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Border & Input */
+  --border: 210 14% 15%;
+  --input: 210 14% 12%;
+  --ring: 142 86% 28%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--muted)));
+  
+  /* Shadows */
+  --shadow-glow: 0 0 40px hsl(var(--primary) / 0.4);
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+  
+  /* Radius */
+  --radius: 0.75rem;
+  
+  /* Sidebar */
+  --sidebar-background: 210 14% 6%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 142 86% 28%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 14% 12%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 210 14% 15%;
+  --sidebar-ring: 142 86% 28%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  html {
+    color-scheme: dark;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+}
+
+@layer components {
+  /* Gaming UI Components */
+  .gaming-card {
+    @apply relative bg-card border border-border rounded-lg overflow-hidden;
+    @apply hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all duration-300;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:pointer-events-none;
+  }
+  
+  .gaming-button {
+    @apply relative bg-gradient-to-r from-primary to-accent text-primary-foreground;
+    @apply hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:scale-105;
+    @apply transition-all duration-300 font-medium;
+  }
+  
+  .gaming-glow {
+    @apply animate-pulse;
+    filter: drop-shadow(0 0 10px hsl(var(--primary)));
+  }
+  
+  .prize-glow {
+    @apply animate-pulse;
+    filter: drop-shadow(0 0 15px hsl(var(--gaming-gold)));
+  }
+  
+  .scratch-card-container {
+    @apply relative aspect-video rounded-lg overflow-hidden;
+    @apply border border-primary/30 bg-gradient-to-br from-card to-secondary;
+  }
+}
+
+/* Dark theme utilities */
+.bg-dark-gradient {
+  background: linear-gradient(135deg, #0a0f14 0%, #1a1f2e 100%);
+}
+
+.bg-card-dark {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-card {
+  box-shadow: var(--shadow-card);
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Fade in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
